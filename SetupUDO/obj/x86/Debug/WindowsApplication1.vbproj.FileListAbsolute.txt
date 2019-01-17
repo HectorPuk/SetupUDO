@@ -1,0 +1,8 @@
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.vbproj.GenerateResource.Cache
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\UDOSetup.Resources.resources
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\UDOSetup.exe
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\UDOSetup.pdb
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\UDOSetup.xml
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\UDOSetup.exe
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\UDOSetup.xml
+C:\Users\Windows\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\UDOSetup.pdb

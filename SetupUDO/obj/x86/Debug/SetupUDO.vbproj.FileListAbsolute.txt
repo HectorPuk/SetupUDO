@@ -1,0 +1,8 @@
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\bin\Debug\SetupUDO.exe
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\bin\Debug\SetupUDO.pdb
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\bin\Debug\SetupUDO.xml
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Debug\UDOSetup.Resources.resources
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.vbproj.GenerateResource.Cache
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.exe
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.xml
+C:\Test\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.pdb
