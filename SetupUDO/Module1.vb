@@ -11,7 +11,7 @@ Namespace UDOSetup
         Public sErrMsgV2 As String
 
         <STAThread()>
-        Sub Main(ByVal args() As String)
+        Sub Main()
 
             Dim oUserObjectMD As SAPbobsCOM.UserObjectsMD
             Dim UDOTable As SAPbobsCOM.UserTablesMD
@@ -20,15 +20,14 @@ Namespace UDOSetup
             Dim conStr As String
             Dim RetCode As Integer
 
+            ' CUIDADO QUE LOS ODU DE 19 O MAS CARACTERES TIENE PROBLEMAS EN ALGUNAS VERSIONES.
+            ' SE SUPONE RESUELTO EN 9.3 PL07.
 
             Try
 
                 Dim oApp As Application
-                If (args.Length < 1) Then
-                    oApp = New Application
-                Else
-                    oApp = New Application(args(0))
-                End If
+
+                oApp = New Application
 
                 oCompany = New SAPbobsCOM.Company()
                 sCookie = oCompany.GetContextCookie
@@ -57,11 +56,11 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
 
-                ' Creo UDO PERFILPRECIOENTRIES
+                ' Creo UDO PPRECIOENTRIES
 
                 UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
 
-                UDOTable.TableName = "PERFILPRECIOENTRIES"
+                UDOTable.TableName = "PPRECIOENTRIES"
                 UDOTable.TableDescription = "Descuentos"
                 UDOTable.TableType = SAPbobsCOM.BoUTBTableType.bott_MasterDataLines
 
@@ -77,11 +76,11 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
 
-                ' Creo UDO PERFILPRECIOEXEP
+                ' Creo UDO PPRECIOEXEP
 
                 UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
 
-                UDOTable.TableName = "PERFILPRECIOEXEP"
+                UDOTable.TableName = "PPRECIOEXEP"
                 UDOTable.TableDescription = "Item Excepciones"
                 UDOTable.TableType = SAPbobsCOM.BoUTBTableType.bott_MasterDataLines
 
@@ -144,12 +143,12 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
 
-                'Agregar UDF Concepto a UDT @PERFILPRECIOENTRIES
+                'Agregar UDF Concepto a UDT @PPRECIOENTRIES
 
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
 
-                UDF_UDOTable.TableName = "@PERFILPRECIOENTRIES"
+                UDF_UDOTable.TableName = "@PPRECIOENTRIES"
                 UDF_UDOTable.Name = "Concepto"
                 UDF_UDOTable.Description = "Concepto"
                 UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
@@ -168,11 +167,11 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
 
-                'Agregar UDF Porcentaje a UDT @PERFILPRECIOENTRIES
+                'Agregar UDF Porcentaje a UDT @PPRECIOENTRIES
 
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
-                UDF_UDOTable.TableName = "@PERFILPRECIOENTRIES"
+                UDF_UDOTable.TableName = "@PPRECIOENTRIES"
                 UDF_UDOTable.Name = "Porcentaje"
                 UDF_UDOTable.Description = "Porcentaje"
                 UDF_UDOTable.Type = BoFieldTypes.db_Float
@@ -191,11 +190,11 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
 
-                'Agregar UDF Computable a UDT @PERFILPRECIOENTRIES
+                'Agregar UDF Computable a UDT @PPRECIOENTRIES
 
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
-                UDF_UDOTable.TableName = "@PERFILPRECIOENTRIES"
+                UDF_UDOTable.TableName = "@PPRECIOENTRIES"
                 UDF_UDOTable.Name = "Computable"
                 UDF_UDOTable.Description = "Computable"
                 UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
@@ -220,11 +219,11 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
 
-                'Agregar UDF ItemCode a UDT @PERFILPRECIOEXEP
+                'Agregar UDF ItemCode a UDT @PPRECIOEXEP
 
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
-                UDF_UDOTable.TableName = "@PERFILPRECIOEXEP"
+                UDF_UDOTable.TableName = "@PPRECIOEXEP"
                 UDF_UDOTable.Name = "ItemCode"
                 UDF_UDOTable.Description = "Cod. Articulo"
                 UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
@@ -243,11 +242,11 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
 
-                'Agregar UDF Porcentaje a UDT @PERFILPRECIOEXEP
+                'Agregar UDF Porcentaje a UDT @PPRECIOEXEP
 
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
-                UDF_UDOTable.TableName = "@PERFILPRECIOEXEP"
+                UDF_UDOTable.TableName = "@PPRECIOEXEP"
                 UDF_UDOTable.Name = "Porcentaje"
                 UDF_UDOTable.Description = "Porcentaje"
                 UDF_UDOTable.Type = BoFieldTypes.db_Float
@@ -266,11 +265,11 @@ Namespace UDOSetup
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
 
-                'Agregar UDF Computable a UDT @PERFILPRECIOEXEP
+                'Agregar UDF Computable a UDT @PPRECIOEXEP
 
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
-                UDF_UDOTable.TableName = "@PERFILPRECIOEXEP"
+                UDF_UDOTable.TableName = "@PPRECIOEXEP"
                 UDF_UDOTable.Name = "Computable"
                 UDF_UDOTable.Description = "Computable"
                 UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
@@ -310,9 +309,9 @@ Namespace UDOSetup
                 oUserObjectMD.CanYearTransfer = SAPbobsCOM.BoYesNoEnum.tYES
                 oUserObjectMD.TableName = "PERFILPRECIO"
                 oUserObjectMD.Code = "PERFILPRECIO"
-                oUserObjectMD.ChildTables.TableName = "PERFILPRECIOENTRIES"
+                oUserObjectMD.ChildTables.TableName = "PPRECIOENTRIES"
                 oUserObjectMD.ChildTables.Add()
-                oUserObjectMD.ChildTables.TableName = "PERFILPRECIOEXEP"
+                oUserObjectMD.ChildTables.TableName = "PPRECIOEXEP"
                 oUserObjectMD.ChildTables.Add()
 
                 oUserObjectMD.CanLog = SAPbobsCOM.BoYesNoEnum.tYES
