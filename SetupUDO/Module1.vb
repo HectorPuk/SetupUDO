@@ -50,24 +50,24 @@ Namespace UDOSetup
 
 
                 vInvoice = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oInvoices)
-                vInvoice.CardCode = "C0001"
+                vInvoice.CardCode = "C0003"
 
                 Dim i As Integer
 
                 vInvoice.PointOfIssueCode = "0003"
                 vInvoice.Comments = "Esto parece funcionar desde la DI API"
 
-                vInvoice.Lines.BaseEntry = 94
+                vInvoice.Lines.BaseEntry = 105
                 vInvoice.Lines.BaseLine = 0
                 vInvoice.Lines.BaseType = SAPbobsCOM.BoObjectTypes.oDeliveryNotes
                 vInvoice.Lines.TaxCode = "IVA_21"
                 vInvoice.Lines.Add()
 
-                vInvoice.Lines.BaseEntry = 94
-                vInvoice.Lines.BaseLine = 1
-                vInvoice.Lines.BaseType = SAPbobsCOM.BoObjectTypes.oDeliveryNotes
-                vInvoice.Lines.TaxCode = "IVA_21"
-                vInvoice.Lines.Add()
+                '   vInvoice.Lines.BaseEntry = 94
+                '   vInvoice.Lines.BaseLine = 1
+                ' vInvoice.Lines.BaseType = SAPbobsCOM.BoObjectTypes.oDeliveryNotes
+                'vInvoice.Lines.TaxCode = "IVA_21"
+                'vInvoice.Lines.Add()
 
                 lRetCode = vInvoice.Add()
 
