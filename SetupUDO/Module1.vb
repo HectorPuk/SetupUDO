@@ -38,6 +38,7 @@ Namespace UDOSetup
             Try
 
                 Dim oApp As Application
+                Dim reto As String
 
                 oApp = New Application
 
@@ -49,7 +50,21 @@ Namespace UDOSetup
                 oCompany.Connect()
 
 
-                vInvoice = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oInvoices)
+                vInvoice = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oDrafts)
+                vInvoice.GetByKey(80)
+                reto = vInvoice.GetAsXML()
+                vInvoice.DiscountPercent = 0
+                reto = vInvoice.GetAsXML()
+                lRetCode = vInvoice.Update()
+
+                vInvoice.PointOfIssueCode = "0003"
+
+                lRetCode = vInvoice.Add()
+
+                vInvoice.SaveDraftToDocument()
+
+                Exit Sub
+
                 vInvoice.CardCode = "C0003"
 
                 Dim i As Integer
