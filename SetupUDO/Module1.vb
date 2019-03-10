@@ -48,6 +48,7 @@ Namespace UDOSetup
                 oCompany.SetSboLoginContext(conStr)
                 oCompany.Connect()
 
+                Application.SBO_Application.StatusBar.SetText("Inicio proceso de creacion UDF", 2, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                 'Agregar UDF ItemCode a UDT @PPRECIOEXEP
 
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
