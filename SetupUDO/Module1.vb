@@ -48,46 +48,30 @@ Namespace UDOSetup
                 oCompany.SetSboLoginContext(conStr)
                 oCompany.Connect()
 
+                'Agregar UDF ItemCode a UDT @PPRECIOEXEP
 
-                vInvoice = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oInvoices)
-                vInvoice.CardCode = "C0001"
+                UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
-                Dim i As Integer
+                UDF_UDOTable.TableName = "@PPRECIOEXEP"
+                UDF_UDOTable.Name = "ItemDesc"
+                UDF_UDOTable.Description = "Descripción Artículo"
+                UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
+                UDF_UDOTable.EditSize = 100
 
-                vInvoice.PointOfIssueCode = "0003"
-                vInvoice.Comments = "Esto parece funcionar desde la DI API"
 
-                vInvoice.Lines.BaseEntry = 94
-                vInvoice.Lines.BaseLine = 0
-                vInvoice.Lines.BaseType = SAPbobsCOM.BoObjectTypes.oDeliveryNotes
-                vInvoice.Lines.TaxCode = "IVA_21"
-                vInvoice.Lines.Add()
+                RetCode = UDF_UDOTable.Add()
 
-                vInvoice.Lines.BaseEntry = 94
-                vInvoice.Lines.BaseLine = 1
-                vInvoice.Lines.BaseType = SAPbobsCOM.BoObjectTypes.oDeliveryNotes
-                vInvoice.Lines.TaxCode = "IVA_21"
-                vInvoice.Lines.Add()
+                oCompany.GetLastError(lRetCode, sErrMsg)
 
-                lRetCode = vInvoice.Add()
+                If lRetCode Then
+                    Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+                Else
+                    Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
+                End If
+
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
 
                 Exit Sub
-
-
-            vInvoice = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oDeliveryNotes)
-
-            vInvoice.GetByKey(90)
-
-
-
-
-
-
-
-
-
-
-
 
 
             ' Creo UDO PERFILPRECIO
