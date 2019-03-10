@@ -12,6 +12,8 @@ Namespace UDOSetup
 
         <STAThread()>
         Sub Main()
+		
+			'comment #1
 
             Dim oUserObjectMD As SAPbobsCOM.UserObjectsMD
             Dim UDOTable As SAPbobsCOM.UserTablesMD
