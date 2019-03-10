@@ -6,3 +6,11 @@ C:\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.vbproj.GenerateResource
 C:\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.exe
 C:\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.xml
 C:\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.pdb
+C:\Sources\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.exe
+C:\Sources\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.xml
+C:\Sources\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.pdb
+C:\Sources\SetupUDO\SetupUDO\bin\Release\SetupUDO.exe
+C:\Sources\SetupUDO\SetupUDO\bin\Release\SetupUDO.pdb
+C:\Sources\SetupUDO\SetupUDO\bin\Release\SetupUDO.xml
+C:\Sources\SetupUDO\SetupUDO\obj\x86\Release\UDOSetup.Resources.resources
+C:\Sources\SetupUDO\SetupUDO\obj\x86\Release\SetupUDO.vbproj.GenerateResource.Cache
