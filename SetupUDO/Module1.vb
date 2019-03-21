@@ -54,8 +54,8 @@ Namespace UDOSetup
                 UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
 
                 UDF_UDOTable.TableName = "@PPRECIOEXEP"
-                UDF_UDOTable.Name = "ItemDesc"
-                UDF_UDOTable.Description = "Descripción Artículo"
+                UDF_UDOTable.Name = "ExepDesc"
+                UDF_UDOTable.Description = "Descuento por Item"
                 UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
                 UDF_UDOTable.EditSize = 100
 
