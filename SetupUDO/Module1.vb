@@ -301,6 +301,9 @@ Namespace UDOSetup
                 Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             End If
 
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
+
             'Agregar UDF ExepDesc a UDT @PPRECIOEXEP
 
             UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
@@ -324,7 +327,6 @@ Namespace UDOSetup
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
             GC.Collect()
-
 
             'Agregar UDF Porcentaje a UDT @PPRECIOEXEP
 
@@ -379,6 +381,9 @@ Namespace UDOSetup
             Else
                 Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             End If
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
 
             'Agregar UDF ListaXML a UDT @PPRECIOLISTA
 
@@ -454,16 +459,6 @@ Namespace UDOSetup
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
             GC.Collect()
-
-
-            oCompany.Disconnect()
-
-            oCompany = New SAPbobsCOM.Company()
-            sCookie = oCompany.GetContextCookie
-
-            conStr = Application.SBO_Application.Company.GetConnectionContext(sCookie)
-            oCompany.SetSboLoginContext(conStr)
-            oCompany.Connect()
 
             'Creo UDO "PERFILPRECIO"
 
