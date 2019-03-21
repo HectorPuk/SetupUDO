@@ -20,17 +20,6 @@ Namespace UDOSetup
             Dim conStr As String
             Dim RetCode As Integer
 
-            Dim RetVal As Long
-            Dim ErrCode As Long
-            Dim ErrMsg As String
-            'Create the Documents object
-
-            Dim vInvoice As SAPbobsCOM.Documents
-
-
-
-
-
 
             ' CUIDADO QUE LOS ODU DE 19 O MAS CARACTERES TIENE PROBLEMAS EN ALGUNAS VERSIONES.
             ' SE SUPONE RESUELTO EN 9.3 PL07.
@@ -48,134 +37,11 @@ Namespace UDOSetup
                 oCompany.SetSboLoginContext(conStr)
                 oCompany.Connect()
 
+            Catch ex As Exception
+                Application.SBO_Application.StatusBar.SetText(ex.Message, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            End Try
 
-                ' Creo UDT PPRECIOLISTA
-
-                UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
-
-                UDOTable.TableName = "PPRECIOLISTA"
-                UDOTable.TableDescription = "Listas Candidatas"
-                UDOTable.TableType = SAPbobsCOM.BoUTBTableType.bott_MasterDataLines
-
-                RetCode = UDOTable.Add()
-
-                oCompany.GetLastError(lRetCode, sErrMsg)
-
-                If lRetCode Then
-                    Application.SBO_Application.StatusBar.SetText("UDT: " & UDOTable.TableName & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-                Else
-                    Application.SBO_Application.StatusBar.SetText("Tabla UDT Creada" & " " & UDOTable.TableName, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
-                End If
-
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
-
-                'Agregar UDF ListaXML a UDT @PERFILPRECIO
-
-                UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
-
-                UDF_UDOTable.TableName = "@PPRECIOLISTA"
-                UDF_UDOTable.Name = "ListaXML"
-                UDF_UDOTable.Description = "Lista en Formato XML"
-                UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Memo
-                UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
-
-                RetCode = UDF_UDOTable.Add()
-
-                oCompany.GetLastError(lRetCode, sErrMsg)
-
-                If lRetCode Then
-                    Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-                Else
-                    Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
-                End If
-
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
-
-
-                'Agregar UDF Comentario a UDT @PERFILPRECIO
-
-                UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
-
-                UDF_UDOTable.TableName = "@PPRECIOLISTA"
-                UDF_UDOTable.Name = "Comentario"
-                UDF_UDOTable.Description = "Comentarios Adicionales"
-                UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
-                UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
-                UDF_UDOTable.EditSize = 100
-
-                RetCode = UDF_UDOTable.Add()
-
-                oCompany.GetLastError(lRetCode, sErrMsg)
-
-                If lRetCode Then
-                    Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-                Else
-                    Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
-                End If
-
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
-
-
-                'Agregar UDF FechaModificacion a UDT @PERFILPRECIO
-
-                UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
-
-                UDF_UDOTable.TableName = "@PPRECIOLISTA"
-                UDF_UDOTable.Name = "FechaCambio"
-                UDF_UDOTable.Description = "Fecha de Modificacion"
-                UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Date
-                UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
-
-                RetCode = UDF_UDOTable.Add()
-
-                oCompany.GetLastError(lRetCode, sErrMsg)
-
-                If lRetCode Then
-                    Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-                Else
-                    Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
-                End If
-
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
-
-
-
-
-
-
-
-
-                Exit Sub
-
-
-                Application.SBO_Application.StatusBar.SetText("Inicio proceso de creacion UDF", 2, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
-                'Agregar UDF ItemCode a UDT @PPRECIOEXEP
-
-                UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
-
-                UDF_UDOTable.TableName = "@PPRECIOEXEP"
-                UDF_UDOTable.Name = "ExepDesc"
-                UDF_UDOTable.Description = "Descuento por Item"
-                UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
-                UDF_UDOTable.EditSize = 100
-
-
-                RetCode = UDF_UDOTable.Add()
-
-                oCompany.GetLastError(lRetCode, sErrMsg)
-
-                If lRetCode Then
-                    Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-                Else
-                    Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
-                End If
-
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
-
-                Exit Sub
-
-
-            ' Creo UDO PERFILPRECIO
+            ' Creo UDT PERFILPRECIO
 
             UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
 
@@ -194,8 +60,9 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
+            GC.Collect()
 
-            ' Creo UDO PPRECIOENTRIES
+            ' Creo UDT PPRECIOENTRIES
 
             UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
 
@@ -214,8 +81,9 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
+            GC.Collect()
 
-            ' Creo UDO PPRECIOEXEP
+            ' Creo UDT PPRECIOEXEP
 
             UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
 
@@ -234,6 +102,29 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
+            GC.Collect()
+
+
+            ' Creo UDT PPRECIOLISTA
+
+            UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
+
+            UDOTable.TableName = "PPRECIOLISTA"
+            UDOTable.TableDescription = "Listas Candidatas"
+            UDOTable.TableType = SAPbobsCOM.BoUTBTableType.bott_MasterDataLines
+
+            RetCode = UDOTable.Add()
+
+            oCompany.GetLastError(lRetCode, sErrMsg)
+
+            If lRetCode Then
+                Application.SBO_Application.StatusBar.SetText("UDT: " & UDOTable.TableName & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Else
+                Application.SBO_Application.StatusBar.SetText("Tabla UDT Creada" & " " & UDOTable.TableName, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
+            End If
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
+            GC.Collect()
 
             'Agregar UDF ListaDePrecios a UDT @PERFILPRECIO
 
@@ -257,6 +148,7 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
 
             'Agregar UDF Rubro a UDT @PERFILPRECIO
 
@@ -269,7 +161,6 @@ Namespace UDOSetup
             UDF_UDOTable.EditSize = 5
             UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
 
-            '// Adding the Field to the Table
             RetCode = UDF_UDOTable.Add()
 
             oCompany.GetLastError(lRetCode, sErrMsg)
@@ -281,11 +172,11 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
 
             'Agregar UDF Concepto a UDT @PPRECIOENTRIES
 
             UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
-
 
             UDF_UDOTable.TableName = "@PPRECIOENTRIES"
             UDF_UDOTable.Name = "Concepto"
@@ -293,6 +184,7 @@ Namespace UDOSetup
             UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
             UDF_UDOTable.EditSize = 50
             UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.DefaultValue = ""
 
             RetCode = UDF_UDOTable.Add()
 
@@ -305,6 +197,7 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
 
             'Agregar UDF Porcentaje a UDT @PPRECIOENTRIES
 
@@ -316,6 +209,7 @@ Namespace UDOSetup
             UDF_UDOTable.Type = BoFieldTypes.db_Float
             UDF_UDOTable.SubType = SAPbobsCOM.BoFldSubTypes.st_Percentage
             UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.DefaultValue = 0
 
             RetCode = UDF_UDOTable.Add()
 
@@ -328,6 +222,7 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
 
             'Agregar UDF Computable a UDT @PPRECIOENTRIES
 
@@ -345,6 +240,7 @@ Namespace UDOSetup
             UDF_UDOTable.ValidValues.Value = "N"
             UDF_UDOTable.ValidValues.Description = "NO"
             UDF_UDOTable.ValidValues.Add()
+            UDF_UDOTable.DefaultValue = "N"
 
             RetCode = UDF_UDOTable.Add()
 
@@ -357,6 +253,7 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
 
             'Agregar UDF ItemCode a UDT @PPRECIOEXEP
 
@@ -368,6 +265,7 @@ Namespace UDOSetup
             UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
             UDF_UDOTable.EditSize = 50
             UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.DefaultValue = ""
 
             RetCode = UDF_UDOTable.Add()
 
@@ -380,6 +278,53 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
+
+            'Agregar UDF ItemDesc a UDT @PPRECIOEXEP
+
+            UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
+
+            UDF_UDOTable.TableName = "@PPRECIOEXEP"
+            UDF_UDOTable.Name = "ItemDesc"
+            UDF_UDOTable.Description = "Descripción Artículo"
+            UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
+            UDF_UDOTable.EditSize = 100
+            UDF_UDOTable.DefaultValue = ""
+
+            RetCode = UDF_UDOTable.Add()
+
+            oCompany.GetLastError(lRetCode, sErrMsg)
+
+            If lRetCode Then
+                Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Else
+                Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
+            End If
+
+            'Agregar UDF ExepDesc a UDT @PPRECIOEXEP
+
+            UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
+
+            UDF_UDOTable.TableName = "@PPRECIOEXEP"
+            UDF_UDOTable.Name = "ExepDesc"
+            UDF_UDOTable.Description = "Descuento por Item"
+            UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
+            UDF_UDOTable.EditSize = 100
+            UDF_UDOTable.DefaultValue = ""
+
+            RetCode = UDF_UDOTable.Add()
+
+            oCompany.GetLastError(lRetCode, sErrMsg)
+
+            If lRetCode Then
+                Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Else
+                Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
+            End If
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
+
 
             'Agregar UDF Porcentaje a UDT @PPRECIOEXEP
 
@@ -391,6 +336,7 @@ Namespace UDOSetup
             UDF_UDOTable.Type = BoFieldTypes.db_Float
             UDF_UDOTable.SubType = SAPbobsCOM.BoFldSubTypes.st_Percentage
             UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.DefaultValue = 0
 
             RetCode = UDF_UDOTable.Add()
 
@@ -403,6 +349,7 @@ Namespace UDOSetup
             End If
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
 
             'Agregar UDF Computable a UDT @PPRECIOEXEP
 
@@ -419,6 +366,7 @@ Namespace UDOSetup
             UDF_UDOTable.ValidValues.Value = "N"
             UDF_UDOTable.ValidValues.Description = "NO"
             UDF_UDOTable.ValidValues.Add()
+            UDF_UDOTable.DefaultValue = "N"
 
             UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
 
@@ -432,7 +380,92 @@ Namespace UDOSetup
                 Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             End If
 
+            'Agregar UDF ListaXML a UDT @PPRECIOLISTA
+
+            UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
+
+            UDF_UDOTable.TableName = "@PPRECIOLISTA"
+            UDF_UDOTable.Name = "ListaXML"
+            UDF_UDOTable.Description = "Lista en Formato XML"
+            UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Memo
+            UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.DefaultValue = ""
+
+            RetCode = UDF_UDOTable.Add()
+
+            oCompany.GetLastError(lRetCode, sErrMsg)
+
+            If lRetCode Then
+                Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Else
+                Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
+            End If
+
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
+
+
+            'Agregar UDF Comentario a UDT @PPRECIOLISTA
+
+            UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
+
+            UDF_UDOTable.TableName = "@PPRECIOLISTA"
+            UDF_UDOTable.Name = "Comentario"
+            UDF_UDOTable.Description = "Comentarios Adicionales"
+            UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
+            UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.EditSize = 100
+            UDF_UDOTable.DefaultValue = ""
+
+            RetCode = UDF_UDOTable.Add()
+
+            oCompany.GetLastError(lRetCode, sErrMsg)
+
+            If lRetCode Then
+                Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Else
+                Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
+            End If
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
+
+
+            'Agregar UDF FechaModificacion a UDT @PPRECIOLISTA
+
+            UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
+
+            UDF_UDOTable.TableName = "@PPRECIOLISTA"
+            UDF_UDOTable.Name = "FechaCambio"
+            UDF_UDOTable.Description = "Fecha de Modificacion"
+            UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Date
+            UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.DefaultValue = ""
+
+            RetCode = UDF_UDOTable.Add()
+
+            oCompany.GetLastError(lRetCode, sErrMsg)
+
+            If lRetCode Then
+                Application.SBO_Application.StatusBar.SetText("UDF: " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Else
+                Application.SBO_Application.StatusBar.SetText("Campo UDF Creado" & " " & UDF_UDOTable.TableName & "." & UDF_UDOTable.Name, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
+            End If
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
+            GC.Collect()
+
+
+            oCompany.Disconnect()
+
+            oCompany = New SAPbobsCOM.Company()
+            sCookie = oCompany.GetContextCookie
+
+            conStr = Application.SBO_Application.Company.GetConnectionContext(sCookie)
+            oCompany.SetSboLoginContext(conStr)
+            oCompany.Connect()
+
+            'Creo UDO "PERFILPRECIO"
 
             oUserObjectMD = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserObjectsMD)
 
@@ -452,22 +485,20 @@ Namespace UDOSetup
             oUserObjectMD.ChildTables.Add()
             oUserObjectMD.ChildTables.TableName = "PPRECIOEXEP"
             oUserObjectMD.ChildTables.Add()
-
+            oUserObjectMD.ChildTables.TableName = "PPRECIOLISTA"
+            oUserObjectMD.ChildTables.Add()
             oUserObjectMD.CanLog = SAPbobsCOM.BoYesNoEnum.tYES
             oUserObjectMD.CanYearTransfer = SAPbobsCOM.BoYesNoEnum.tNO
             oUserObjectMD.Name = "Perfil de Precios"
 
-            oUserObjectMD.Add()
+            lRetCode = oUserObjectMD.Add()
+
 
             If lRetCode Then
                 Application.SBO_Application.StatusBar.SetText("UDO: " & oUserObjectMD.Code & " " & sErrMsg, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
             Else
                 Application.SBO_Application.StatusBar.SetText("Objeto UDO Creado: " & oUserObjectMD.Code, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             End If
-
-            Catch ex As Exception
-                Application.SBO_Application.StatusBar.SetText(ex.Message, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-            End Try
 
 
 
