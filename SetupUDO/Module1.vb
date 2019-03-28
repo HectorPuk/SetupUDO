@@ -480,8 +480,8 @@ Namespace UDOSetup
             oUserObjectMD.ChildTables.Add()
             oUserObjectMD.ChildTables.TableName = "PPRECIOEXEP"
             oUserObjectMD.ChildTables.Add()
-            oUserObjectMD.ChildTables.TableName = "PPRECIOLISTA"
-            oUserObjectMD.ChildTables.Add()
+            'oUserObjectMD.ChildTables.TableName = "PPRECIOLISTA"
+            'oUserObjectMD.ChildTables.Add()
             oUserObjectMD.CanLog = SAPbobsCOM.BoYesNoEnum.tYES
             oUserObjectMD.CanYearTransfer = SAPbobsCOM.BoYesNoEnum.tNO
             oUserObjectMD.Name = "Perfil de Precios"
