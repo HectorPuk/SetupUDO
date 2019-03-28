@@ -418,7 +418,7 @@ Namespace UDOSetup
             UDF_UDOTable.Name = "Comentario"
             UDF_UDOTable.Description = "Comentarios Adicionales"
             UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Alpha
-            UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.Mandatory = BoYesNoEnum.tNO
             UDF_UDOTable.EditSize = 100
             UDF_UDOTable.DefaultValue = ""
 
@@ -444,7 +444,7 @@ Namespace UDOSetup
             UDF_UDOTable.Name = "FechaCambio"
             UDF_UDOTable.Description = "Fecha de Modificacion"
             UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Date
-            UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.Mandatory = BoYesNoEnum.tNO
             UDF_UDOTable.DefaultValue = ""
 
             RetCode = UDF_UDOTable.Add()
