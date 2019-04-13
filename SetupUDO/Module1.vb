@@ -393,7 +393,7 @@ Namespace UDOSetup
             UDF_UDOTable.Name = "ListaXML"
             UDF_UDOTable.Description = "Lista en Formato XML"
             UDF_UDOTable.Type = SAPbobsCOM.BoFieldTypes.db_Memo
-            UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
+            UDF_UDOTable.Mandatory = BoYesNoEnum.tNO
             UDF_UDOTable.DefaultValue = ""
 
             RetCode = UDF_UDOTable.Add()
