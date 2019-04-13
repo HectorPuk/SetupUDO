@@ -41,7 +41,6 @@ Namespace UDOSetup
                 Application.SBO_Application.StatusBar.SetText(ex.Message, 2, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
             End Try
 
-            GoTo test
 
             ' Creo UDT PERFILPRECIO
 
@@ -106,9 +105,7 @@ Namespace UDOSetup
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
             GC.Collect()
 
-
             ' Creo UDT PPRECIOLISTA
-test:
 
             UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserTables)
 
@@ -128,8 +125,6 @@ test:
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDOTable)
             GC.Collect()
-
-            GoTo test2
 
             'Agregar UDF ListaDePrecios a UDT @PERFILPRECIO
 
@@ -390,8 +385,6 @@ test:
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
             GC.Collect()
 
-test2:
-
             'Agregar UDF ListaXML a UDT @PPRECIOLISTA
 
             UDF_UDOTable = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields)
@@ -490,10 +483,6 @@ test2:
             System.Runtime.InteropServices.Marshal.ReleaseComObject(UDF_UDOTable)
             GC.Collect()
 
-            GoTo test3
-
-
-
             'Creo UDO "PERFILPRECIO"
 
             oUserObjectMD = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserObjectsMD)
@@ -529,8 +518,6 @@ test2:
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(oUserObjectMD)
             GC.Collect()
-
-test3:
 
             'Creo UDO "LISTAS-APLICAR"
 
