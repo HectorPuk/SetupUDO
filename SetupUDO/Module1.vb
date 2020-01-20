@@ -240,7 +240,7 @@ Namespace UDOSetup
             UDF_UDOTable.ValidValues.Value = "N"
             UDF_UDOTable.ValidValues.Description = "NO"
             UDF_UDOTable.ValidValues.Add()
-            UDF_UDOTable.DefaultValue = "N"
+            UDF_UDOTable.DefaultValue = "S"
 
             RetCode = UDF_UDOTable.Add()
 
@@ -368,7 +368,7 @@ Namespace UDOSetup
             UDF_UDOTable.ValidValues.Value = "N"
             UDF_UDOTable.ValidValues.Description = "NO"
             UDF_UDOTable.ValidValues.Add()
-            UDF_UDOTable.DefaultValue = "N"
+            UDF_UDOTable.DefaultValue = "S"
 
             UDF_UDOTable.Mandatory = BoYesNoEnum.tYES
 

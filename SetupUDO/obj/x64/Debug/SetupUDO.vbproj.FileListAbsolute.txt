@@ -1,0 +1,9 @@
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\x64\Debug\SetupUDO.exe
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\x64\Debug\SetupUDO.pdb
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\x64\Debug\SetupUDO.xml
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\x64\Debug\SAPBusinessOneSDK.dll
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x64\Debug\UDOSetup.Resources.resources
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x64\Debug\SetupUDO.vbproj.GenerateResource.Cache
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x64\Debug\SetupUDO.exe
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x64\Debug\SetupUDO.xml
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x64\Debug\SetupUDO.pdb

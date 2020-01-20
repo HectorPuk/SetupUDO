@@ -14,3 +14,13 @@ C:\SweetAddOn\SetupUDO\SetupUDO\bin\Debug\SetupUDO.pdb
 C:\SweetAddOn\SetupUDO\SetupUDO\bin\Debug\SetupUDO.xml
 C:\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Debug\UDOSetup.Resources.resources
 C:\SweetAddOn\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.vbproj.GenerateResource.Cache
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.exe
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.xml
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.pdb
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\Debug\SetupUDO.exe
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\Debug\SetupUDO.pdb
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\Debug\SetupUDO.xml
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\bin\Debug\SAPBusinessOneSDK.dll
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.vbprojResolveAssemblyReference.cache
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x86\Debug\UDOSetup.Resources.resources
+C:\SweetAddOnDec2019\SetupUDO\SetupUDO\SetupUDO\obj\x86\Debug\SetupUDO.vbproj.GenerateResource.Cache
